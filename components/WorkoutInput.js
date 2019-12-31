@@ -5,12 +5,8 @@ import {
 	Modal,
 	SafeAreaView,
 	TouchableOpacity,
-<<<<<<< HEAD
 	TextInput,
 	Button
-=======
-	TextInput
->>>>>>> 8d07b3e063734c70f3b77bd13d61a8bffb4729b4
 } from "react-native";
 
 import DatePicker from "react-native-datepicker";
@@ -18,11 +14,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 const WorkoutInput = props => {
 	const [date, setDate] = useState();
-<<<<<<< HEAD
 	const [workouts, Setworkouts] = useState([]);
-=======
-
->>>>>>> 8d07b3e063734c70f3b77bd13d61a8bffb4729b4
 	const dateHandle = d => {
 		setDate(d);
 	};
@@ -31,22 +23,10 @@ const WorkoutInput = props => {
 		<SafeAreaView>
 			<Modal visible={props.visible} animationType="slide">
 				<View style={styles.screen}>
-<<<<<<< HEAD
 					<View style={styles.done}>
 						<Button title="Done" color="purple" onPress={props.onDone} />
 					</View>
 
-=======
-					<View style={styles.buttonContain}>
-						<TouchableOpacity
-							activeOpacity={0.5}
-							onPress={props.OnDone}
-							style={styles.done}
-						>
-							<Icon name="ios-close" color="purple" size={45} />
-						</TouchableOpacity>
-					</View>
->>>>>>> 8d07b3e063734c70f3b77bd13d61a8bffb4729b4
 					<View style={styles.color}>
 						<View style={styles.box}>
 							<View style={styles.firstContainer}>
@@ -87,12 +67,9 @@ const WorkoutInput = props => {
 									placeholderTextColor="#a9a9a9"
 								/>
 							</View>
-<<<<<<< HEAD
 						</View>
 						<View style={styles.box2}>
 							<Button title="Add Excercise" color="purple"></Button>
-=======
->>>>>>> 8d07b3e063734c70f3b77bd13d61a8bffb4729b4
 						</View>
 					</View>
 				</View>
@@ -142,7 +119,6 @@ const styles = StyleSheet.create({
 		marginTop: 40,
 		backgroundColor: "white",
 		height: 110
-<<<<<<< HEAD
 	},
 	box2: {
 		borderColor: "#BFBFBF",
@@ -150,8 +126,6 @@ const styles = StyleSheet.create({
 		marginTop: 40,
 		backgroundColor: "white",
 		height: 40
-=======
->>>>>>> 8d07b3e063734c70f3b77bd13d61a8bffb4729b4
 	}
 });
 
