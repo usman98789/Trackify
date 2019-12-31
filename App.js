@@ -22,6 +22,8 @@ export default function App() {
 function LogScreen() {
 	const [isAddMode, setIsAddMode] = useState(false);
 
+	const [infoArray, setInfoArray] = useState([]);
+
 	const DoneLogHandler = () => {
 		setIsAddMode(false);
 	};
