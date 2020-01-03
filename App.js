@@ -4,12 +4,18 @@ import {
 	Text,
 	View,
 	SafeAreaView,
-	TouchableOpacity
+	TouchableOpacity,
+	TextInput,
+	Button,
+	TouchableWithoutFeedback,
+	Keyboard
 } from "react-native";
 
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import Icon from "react-native-vector-icons/Ionicons";
 import WorkoutInput from "./components/WorkoutInput";
+import PRInput from "./components/PRInput";
+import ExSets from "./components/ExSets";
 
 export default function App() {
 	return (
@@ -48,23 +54,89 @@ function LogScreen() {
 }
 
 function PRScreen() {
+	const [PRArray, setPRArray] = useState([]);
+	const [setsArray, setSetsArray] = useState([]);
+	const [weight, setWeight] = useState("");
+	const [reps, setReps] = useState("");
+	const [date, setDate] = useState("");
+
+	const addPR = () => {
+		alert("test");
+	};
+
+	const addSets = () => {
+		setSetsArray(setsArray => [
+			...setsArray,
+			{ Weight: weight, Reps: reps, Date: date }
+		]);
+	};
+
+	const setWeights = w => {
+		setWeight(w);
+	};
+
+	const setRep = r => {
+		setReps(r);
+	};
+
+	const setDates = d => {
+		setDate(d);
+	};
+
+	let sets = setsArray.map((val, key) => {
+		return (
+			<ExSets
+				weight={setWeights}
+				rep={setRep}
+				date={setDates}
+				key={key}
+				keyval={key}
+				val={val}
+			/>
+		);
+	});
+
 	return (
-		<View style={styles.container}>
-			<Text>Your Personal Records</Text>
-		</View>
+		<TouchableWithoutFeedback
+			onPress={() => {
+				Keyboard.dismiss();
+			}}
+		>
+			<View style={styles.container}>
+				<View style={styles.color}>
+					<TouchableOpacity
+						activeOpacity={0.5}
+						onPress={addPR.bind(this)}
+						style={styles.TouchableOpacity}
+					>
+						<Icon name="ios-add" color="purple" size={45} />
+					</TouchableOpacity>
+					<View style={styles.header}>
+						<Text style={styles.headerTitle}>Personal Records</Text>
+					</View>
+
+					<View style={styles.boxWorkouts}>
+						<TextInput
+							selectionColor="blue"
+							style={styles.input2}
+							placeholder="Excercise Name"
+							placeholderTextColor="#a9a9a9"
+							maxLength={30}
+							multiline={false}
+						/>
+						<ExSets weight={setWeights} rep={setRep} date={setDates} />
+						{sets}
+						<View style={styles.addSet}>
+							<Button title="Add Set" color="purple" onPress={addSets}></Button>
+						</View>
+					</View>
+				</View>
+			</View>
+		</TouchableWithoutFeedback>
 	);
 }
 const AppTabNavigator = createMaterialBottomTabNavigator(
 	{
-		Log: {
-			screen: LogScreen,
-			navigationOptions: {
-				tabBarLabel: "Workout Logs",
-				tabBarIcon: ({ tintColor }) => (
-					<Icon name="ios-book" color={tintColor} size={24} />
-				)
-			}
-		},
 		PR: {
 			screen: PRScreen,
 			navigationOptions: {
@@ -73,11 +145,20 @@ const AppTabNavigator = createMaterialBottomTabNavigator(
 					<Icon name="ios-star" color={tintColor} size={24} />
 				)
 			}
+		},
+		Log: {
+			screen: LogScreen,
+			navigationOptions: {
+				tabBarLabel: "Workout Logs",
+				tabBarIcon: ({ tintColor }) => (
+					<Icon name="ios-book" color={tintColor} size={24} />
+				)
+			}
 		}
 	},
 	{
-		initialRouteName: "Log",
-		order: ["Log", "PR"],
+		initialRouteName: "PR",
+		order: ["PR", "Log"],
 		activeTintColor: "purple"
 	}
 );
@@ -92,17 +173,43 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 		right: 30,
-		top: 20
+		top: -50
 	},
 	header: {
-		width: "100%",
-		height: 450,
+		top: -40,
 		paddingLeft: 20,
-		alignItems: "baseline",
-		justifyContent: "flex-start"
+		position: "relative"
 	},
 	headerTitle: {
 		color: "black",
-		fontSize: 25
+		fontSize: 25,
+		fontWeight: "bold"
+	},
+	color: {
+		flex: 1,
+		marginTop: 70,
+		backgroundColor: "#F0EFF5"
+	},
+	boxWorkouts: {
+		borderColor: "#BFBFBF",
+		borderWidth: 1,
+		backgroundColor: "white",
+		height: 90
+	},
+	input2: {
+		backgroundColor: "white",
+		borderBottomColor: "#BFBFBF",
+		borderBottomWidth: 1,
+		height: 50,
+		fontSize: 19,
+		right: -30
+	},
+
+	addSet: {
+		borderColor: "#BFBFBF",
+		borderBottomWidth: 1,
+		marginTop: 0,
+		backgroundColor: "white",
+		height: 40
 	}
 });

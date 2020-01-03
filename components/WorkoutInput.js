@@ -68,6 +68,15 @@ const WorkoutInput = props => {
 								/>
 							</View>
 						</View>
+						<View style={styles.boxWorkouts}>
+							<TextInput
+								selectionColor="blue"
+								style={styles.input2}
+								placeholder="Excercise Name"
+								placeholderTextColor="#a9a9a9"
+							/>
+						</View>
+
 						<View style={styles.box2}>
 							<Button title="Add Excercise" color="purple"></Button>
 						</View>
@@ -109,6 +118,16 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 		fontSize: 16
 	},
+	input2: {
+		backgroundColor: "white",
+		borderBottomColor: "#BFBFBF",
+		borderBottomWidth: 1,
+		height: 35,
+		width: 300,
+		marginTop: 10,
+		fontSize: 19,
+		right: -30
+	},
 	date: {
 		width: 300,
 		alignItems: "flex-start"
@@ -126,6 +145,13 @@ const styles = StyleSheet.create({
 		marginTop: 40,
 		backgroundColor: "white",
 		height: 40
+	},
+	boxWorkouts: {
+		borderColor: "#BFBFBF",
+		borderWidth: 1,
+		marginTop: 40,
+		backgroundColor: "white",
+		height: 95
 	}
 });
 
