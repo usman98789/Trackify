@@ -1,21 +1,22 @@
-import React from "react";
-import {
-	View,
-	StyleSheet,
-	TextInput,
-	Text,
-	TouchableWithoutFeedback,
-	Keyboard
-} from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, TextInput, Text, DatePickerIOS } from "react-native";
+
+import DatePicker from "react-native-datepicker";
 
 const ExSets = props => {
+	const [date, setDate] = useState(new Date());
+
+	const dateHandle = d => {
+		setDate(d);
+		props.date(d);
+	};
+
 	return (
 		<View key={props.keyval} style={styles.box}>
 			<View style={styles.above}>
-				<Text style={{ color: "purple" }}>
-					Weight &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-				</Text>
-				<Text style={{ color: "purple" }}>Reps</Text>
+				<Text style={{ color: "purple" }}>Weight</Text>
+				<Text style={{ color: "purple", left: 44 }}>Reps</Text>
+				<Text style={{ color: "purple", left: 100 }}>Date</Text>
 			</View>
 
 			<TextInput
@@ -36,12 +37,34 @@ const ExSets = props => {
 				keyboardType="number-pad"
 				maxLength={4}
 			/>
-			<TextInput
-				selectionColor="blue"
+
+			<DatePicker
 				style={[styles.input2, styles.reps, styles.weight, styles.date]}
+				mode="date"
+				date={date}
 				placeholder="Date"
-				placeholderTextColor="#a9a9a9"
-				onChangeText={props.date}
+				format="YYYY-MM-DD"
+				confirmBtnText="Confirm"
+				cancelBtnText="Cancel"
+				showIcon={false}
+				onDateChange={dateHandle}
+				customStyles={{
+					dateInput: {
+						borderWidth: 0,
+						alignItems: "flex-start"
+					},
+					placeholderText: {
+						color: "#a9a9a9",
+						fontSize: 19
+					},
+					dateText: {
+						color: "black",
+						fontSize: 14
+					},
+					btnTextConfirm: {
+						color: "purple"
+					}
+				}}
 			/>
 		</View>
 	);
@@ -63,11 +86,11 @@ const styles = StyleSheet.create({
 	},
 	reps: {
 		marginTop: -35,
-		right: -140
+		right: -120
 	},
 	date: {
 		width: 82,
-		right: -250
+		right: -208
 	},
 	box: {
 		borderColor: "#BFBFBF",

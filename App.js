@@ -16,6 +16,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import WorkoutInput from "./components/WorkoutInput";
 import PRInput from "./components/PRInput";
 import ExSets from "./components/ExSets";
+import HoldWorkout from "./components/HoldWorkouts";
 
 export default function App() {
 	return (
@@ -55,20 +56,28 @@ function LogScreen() {
 
 function PRScreen() {
 	const [PRArray, setPRArray] = useState([]);
+	const [exName, setExName] = useState("");
 	const [setsArray, setSetsArray] = useState([]);
 	const [weight, setWeight] = useState("");
 	const [reps, setReps] = useState("");
-	const [date, setDate] = useState("");
+	const [date, setDate] = useState();
 
 	const addPR = () => {
-		alert("test");
+		setPRArray(PRArray => [...PRArray, { exName: setsArray }]);
 	};
 
 	const addSets = () => {
+		console.log("weight", weight);
+		console.log("reps", reps);
+		console.log("date", date);
 		setSetsArray(setsArray => [
 			...setsArray,
 			{ Weight: weight, Reps: reps, Date: date }
 		]);
+	};
+
+	const setName = n => {
+		setExName(n);
 	};
 
 	const setWeights = w => {
@@ -94,6 +103,10 @@ function PRScreen() {
 				val={val}
 			/>
 		);
+	});
+
+	let PRs = PRArray.map((val, key) => {
+		return <HoldWorkout key={key} keyval={key} val={val} exName={setName} />;
 	});
 
 	return (
@@ -123,6 +136,7 @@ function PRScreen() {
 							placeholderTextColor="#a9a9a9"
 							maxLength={30}
 							multiline={false}
+							onChangeText={setName}
 						/>
 						<ExSets weight={setWeights} rep={setRep} date={setDates} />
 						{sets}
@@ -192,7 +206,8 @@ const styles = StyleSheet.create({
 	},
 	boxWorkouts: {
 		borderColor: "#BFBFBF",
-		borderWidth: 1,
+		borderBottomWidth: 1,
+		borderTopWidth: 1,
 		backgroundColor: "white",
 		height: 90
 	},
