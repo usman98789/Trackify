@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet, Button } from "react-native";
+import ExSets from "./ExSets";
 
 const HoldWorkout = props => {
-	const [exName, setExName] = useState("");
 	const [setsArray, setSetsArray] = useState([]);
 	const [weight, setWeight] = useState("");
 	const [reps, setReps] = useState("");
@@ -13,10 +13,7 @@ const HoldWorkout = props => {
 			...setsArray,
 			{ Weight: weight, Reps: reps, Date: date }
 		]);
-	};
-
-	const setName = n => {
-		setExName(n);
+		props.setsHold(setsArray);
 	};
 
 	const setWeights = w => {
@@ -52,7 +49,7 @@ const HoldWorkout = props => {
 				placeholderTextColor="#a9a9a9"
 				maxLength={30}
 				multiline={false}
-				onChangeText={setName}
+				onChangeText={props.exName}
 			/>
 			<ExSets weight={setWeights} rep={setRep} date={setDates} />
 			{sets}

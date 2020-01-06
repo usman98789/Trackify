@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TextInput, Text, DatePickerIOS } from "react-native";
+import { View, StyleSheet, TextInput, Text } from "react-native";
 
 import DatePicker from "react-native-datepicker";
 

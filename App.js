@@ -5,8 +5,7 @@ import {
 	View,
 	SafeAreaView,
 	TouchableOpacity,
-	TextInput,
-	Button,
+	ScrollView,
 	TouchableWithoutFeedback,
 	Keyboard
 } from "react-native";
@@ -15,7 +14,6 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 import Icon from "react-native-vector-icons/Ionicons";
 import WorkoutInput from "./components/WorkoutInput";
 import PRInput from "./components/PRInput";
-import ExSets from "./components/ExSets";
 import HoldWorkout from "./components/HoldWorkouts";
 
 export default function App() {
@@ -44,7 +42,7 @@ function LogScreen() {
 				}}
 				style={styles.TouchableOpacity}
 			>
-				<Icon name="ios-add" color="purple" size={45} />
+				<Icon name="ios-add" color="purple" size={65} />
 			</TouchableOpacity>
 			<WorkoutInput visible={isAddMode} onDone={DoneLogHandler} />
 			<View style={styles.header}>
@@ -57,56 +55,31 @@ function LogScreen() {
 function PRScreen() {
 	const [PRArray, setPRArray] = useState([]);
 	const [exName, setExName] = useState("");
-	const [setsArray, setSetsArray] = useState([]);
-	const [weight, setWeight] = useState("");
-	const [reps, setReps] = useState("");
-	const [date, setDate] = useState();
+	const [setsHold, setSetsHold] = useState([]);
 
 	const addPR = () => {
-		setPRArray(PRArray => [...PRArray, { exName: setsArray }]);
+		setPRArray(PRArray => [...PRArray, { exName: setsHold }]);
 	};
 
-	const addSets = () => {
-		console.log("weight", weight);
-		console.log("reps", reps);
-		console.log("date", date);
-		setSetsArray(setsArray => [
-			...setsArray,
-			{ Weight: weight, Reps: reps, Date: date }
-		]);
+	const setName = x => {
+		setExName(x);
 	};
 
-	const setName = n => {
-		setExName(n);
+	const setSets = y => {
+		setSetsHold(y);
 	};
 
-	const setWeights = w => {
-		setWeight(w);
-	};
-
-	const setRep = r => {
-		setReps(r);
-	};
-
-	const setDates = d => {
-		setDate(d);
-	};
-
-	let sets = setsArray.map((val, key) => {
+	let PRs = PRArray.map((val, key) => {
 		return (
-			<ExSets
-				weight={setWeights}
-				rep={setRep}
-				date={setDates}
+			<HoldWorkout
+				style={styles.keepDistance}
 				key={key}
 				keyval={key}
 				val={val}
+				exName={setName}
+				setsHold={setSets}
 			/>
 		);
-	});
-
-	let PRs = PRArray.map((val, key) => {
-		return <HoldWorkout key={key} keyval={key} val={val} exName={setName} />;
 	});
 
 	return (
@@ -116,7 +89,7 @@ function PRScreen() {
 			}}
 		>
 			<View style={styles.container}>
-				<View style={styles.color}>
+				<View style={styles.whiteColor}>
 					<TouchableOpacity
 						activeOpacity={0.5}
 						onPress={addPR.bind(this)}
@@ -124,27 +97,15 @@ function PRScreen() {
 					>
 						<Icon name="ios-add" color="purple" size={45} />
 					</TouchableOpacity>
+
 					<View style={styles.header}>
 						<Text style={styles.headerTitle}>Personal Records</Text>
 					</View>
-
-					<View style={styles.boxWorkouts}>
-						<TextInput
-							selectionColor="blue"
-							style={styles.input2}
-							placeholder="Excercise Name"
-							placeholderTextColor="#a9a9a9"
-							maxLength={30}
-							multiline={false}
-							onChangeText={setName}
-						/>
-						<ExSets weight={setWeights} rep={setRep} date={setDates} />
-						{sets}
-						<View style={styles.addSet}>
-							<Button title="Add Set" color="purple" onPress={addSets}></Button>
-						</View>
-					</View>
 				</View>
+
+				<ScrollView style={styles.scrollViewStyle}>
+					<View style={styles.color}>{PRs}</View>
+				</ScrollView>
 			</View>
 		</TouchableWithoutFeedback>
 	);
@@ -178,53 +139,46 @@ const AppTabNavigator = createMaterialBottomTabNavigator(
 );
 
 const styles = StyleSheet.create({
+	whiteColor: {
+		backgroundColor: "white",
+		borderBottomColor: "#F0EFF5",
+		borderBottomWidth: 2,
+		height: 80
+	},
 	container: {
 		flex: 1,
-		justifyContent: "center"
+		borderBottomColor: "#F0EFF5",
+		borderBottomWidth: 2
 	},
 	TouchableOpacity: {
 		position: "absolute",
 		alignItems: "center",
 		justifyContent: "center",
-		right: 30,
-		top: -50
+		right: 10,
+		top: 28,
+		height: 50,
+		width: 50,
+		zIndex: 1
 	},
 	header: {
-		top: -40,
+		top: 35,
 		paddingLeft: 20,
 		position: "relative"
 	},
 	headerTitle: {
 		color: "black",
-		fontSize: 25,
+		fontSize: 28,
 		fontWeight: "bold"
 	},
 	color: {
-		flex: 1,
-		marginTop: 70,
+		marginTop: 20,
 		backgroundColor: "#F0EFF5"
 	},
-	boxWorkouts: {
-		borderColor: "#BFBFBF",
-		borderBottomWidth: 1,
-		borderTopWidth: 1,
-		backgroundColor: "white",
-		height: 90
+	addButtonText: {
+		color: "white",
+		fontSize: 24
 	},
-	input2: {
-		backgroundColor: "white",
-		borderBottomColor: "#BFBFBF",
-		borderBottomWidth: 1,
-		height: 50,
-		fontSize: 19,
-		right: -30
-	},
-
-	addSet: {
-		borderColor: "#BFBFBF",
-		borderBottomWidth: 1,
-		marginTop: 0,
-		backgroundColor: "white",
-		height: 40
+	keepDistance: {
+		height: 100
 	}
 });
