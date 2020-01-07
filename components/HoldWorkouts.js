@@ -63,9 +63,9 @@ const HoldWorkout = props => {
 const styles = StyleSheet.create({
 	boxWorkouts: {
 		borderColor: "#BFBFBF",
-		borderWidth: 1,
+		borderTopWidth: 1,
 		backgroundColor: "white",
-		height: 90
+		marginBottom: 20
 	},
 	input2: {
 		backgroundColor: "white",

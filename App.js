@@ -72,7 +72,6 @@ function PRScreen() {
 	let PRs = PRArray.map((val, key) => {
 		return (
 			<HoldWorkout
-				style={styles.keepDistance}
 				key={key}
 				keyval={key}
 				val={val}
@@ -177,8 +176,5 @@ const styles = StyleSheet.create({
 	addButtonText: {
 		color: "white",
 		fontSize: 24
-	},
-	keepDistance: {
-		height: 100
 	}
 });
