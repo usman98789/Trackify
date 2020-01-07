@@ -1,6 +1,13 @@
 import React, { useState } from "react";
-import { View, TextInput, StyleSheet, Button } from "react-native";
+import {
+	View,
+	TextInput,
+	StyleSheet,
+	Button,
+	TouchableOpacity
+} from "react-native";
 import ExSets from "./ExSets";
+import Icon from "react-native-vector-icons/Ionicons";
 
 const HoldWorkout = props => {
 	const [setsArray, setSetsArray] = useState([]);
@@ -65,7 +72,7 @@ const styles = StyleSheet.create({
 		borderColor: "#BFBFBF",
 		borderTopWidth: 1,
 		backgroundColor: "white",
-		marginBottom: 20
+		marginBottom: 30
 	},
 	input2: {
 		backgroundColor: "white",
@@ -81,6 +88,13 @@ const styles = StyleSheet.create({
 		marginTop: 0,
 		backgroundColor: "white",
 		height: 40
+	},
+	TouchableOpacity: {
+		justifyContent: "flex-end",
+		alignItems: "flex-end",
+		position: "absolute",
+		left: 200,
+		zIndex: 1
 	}
 });
 

@@ -35,18 +35,20 @@ function LogScreen() {
 
 	return (
 		<View style={styles.container}>
-			<TouchableOpacity
-				activeOpacity={0.5}
-				onPress={() => {
-					setIsAddMode(true);
-				}}
-				style={styles.TouchableOpacity}
-			>
-				<Icon name="ios-add" color="purple" size={65} />
-			</TouchableOpacity>
-			<WorkoutInput visible={isAddMode} onDone={DoneLogHandler} />
-			<View style={styles.header}>
-				<Text style={styles.headerTitle}>Workout Log</Text>
+			<View style={styles.whiteColor}>
+				<TouchableOpacity
+					activeOpacity={0.5}
+					onPress={() => {
+						setIsAddMode(true);
+					}}
+					style={styles.TouchableOpacity}
+				>
+					<Icon name="ios-add" color="purple" size={45} />
+				</TouchableOpacity>
+				<WorkoutInput visible={isAddMode} onDone={DoneLogHandler} />
+				<View style={styles.header}>
+					<Text style={styles.headerTitle}>Workout Notes</Text>
+				</View>
 			</View>
 		</View>
 	);
@@ -123,7 +125,7 @@ const AppTabNavigator = createMaterialBottomTabNavigator(
 		Log: {
 			screen: LogScreen,
 			navigationOptions: {
-				tabBarLabel: "Workout Logs",
+				tabBarLabel: "Workout Notes",
 				tabBarIcon: ({ tintColor }) => (
 					<Icon name="ios-book" color={tintColor} size={24} />
 				)
@@ -170,8 +172,7 @@ const styles = StyleSheet.create({
 		fontWeight: "bold"
 	},
 	color: {
-		marginTop: 20,
-		backgroundColor: "#F0EFF5"
+		marginTop: 20
 	},
 	addButtonText: {
 		color: "white",
