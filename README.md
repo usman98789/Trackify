@@ -1,8 +1,8 @@
 # Trackify! Weight & Reps Tracker
 ###### NOTE: Work in progress
 
-An app designed using React Native for IOS & Android to allow users to track their workout weights/reps and aim for new Personal Records while being able to take notes. 
-This app will help users increase strength and go for more reps as they will be able to track what their current max weights with the date they performed it which will give them incentive to go aim higher next time.
+An app designed using React Native for iOS & Android to allow users to track their workouts and aim for new Personal Records.
+This removes the hastle of writing down what your workout weight and reps are in a notebook or clutterring your phones deafult note app.
 
 <p float="center">
 <img src="images/pr_img.jpg" width="49%">
