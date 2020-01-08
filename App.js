@@ -119,7 +119,8 @@ const AppTabNavigator = createMaterialBottomTabNavigator(
 				tabBarLabel: "Personal Records",
 				tabBarIcon: ({ tintColor }) => (
 					<Icon name="ios-star" color={tintColor} size={24} />
-				)
+				),
+				animationEnabled: false
 			}
 		},
 		Log: {
@@ -128,7 +129,8 @@ const AppTabNavigator = createMaterialBottomTabNavigator(
 				tabBarLabel: "Workout Notes",
 				tabBarIcon: ({ tintColor }) => (
 					<Icon name="ios-book" color={tintColor} size={24} />
-				)
+				),
+				animationEnabled: false
 			}
 		}
 	},
