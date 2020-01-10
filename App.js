@@ -12,10 +12,8 @@ import {
 
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import Icon from "react-native-vector-icons/Ionicons";
-import WorkoutInput from "./components/WorkoutInput";
-import PRInput from "./components/PRInput";
 import HoldWorkout from "./components/HoldWorkouts";
-
+import HoldNote from "./components/HoldNote";
 export default function App() {
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
@@ -25,31 +23,39 @@ export default function App() {
 }
 
 function LogScreen() {
-	const [isAddMode, setIsAddMode] = useState(false);
+	const [note, setNote] = useState("");
+	const [NoteArray, setNoteArray] = useState([]);
 
-	const [infoArray, setInfoArray] = useState([]);
-
-	const DoneLogHandler = () => {
-		setIsAddMode(false);
+	const addNote = () => {
+		setNoteArray(NoteArray => [...NoteArray, { Note: note }]);
 	};
+
+	const setnote = x => {
+		setNote(x);
+	};
+
+	let notes = NoteArray.map((val, key) => {
+		return <HoldNote key={key} keyval={key} val={val} note={setnote} />;
+	});
 
 	return (
 		<View style={styles.container}>
 			<View style={styles.whiteColor}>
 				<TouchableOpacity
 					activeOpacity={0.5}
-					onPress={() => {
-						setIsAddMode(true);
-					}}
+					onPress={addNote.bind(this)}
 					style={styles.TouchableOpacity}
 				>
 					<Icon name="ios-add" color="purple" size={45} />
 				</TouchableOpacity>
-				<WorkoutInput visible={isAddMode} onDone={DoneLogHandler} />
+
 				<View style={styles.header}>
 					<Text style={styles.headerTitle}>Workout Notes</Text>
 				</View>
 			</View>
+			<ScrollView style={styles.scrollViewStyle}>
+				<View style={styles.color}>{notes}</View>
+			</ScrollView>
 		</View>
 	);
 }
