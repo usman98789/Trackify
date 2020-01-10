@@ -1,35 +1,61 @@
-import React from "react";
-import { View, StyleSheet, TextInput } from "react-native";
+import React, { useState } from "react";
+import {
+	View,
+	StyleSheet,
+	TextInput,
+	TouchableOpacity,
+	Text
+} from "react-native";
 
 const HoldNote = props => {
+	const [note, setNote] = useState("");
+
+	const setnote = x => {
+		setNote(x);
+		props.note(note);
+	};
+
+	let d = new Date();
+	let date_format =
+		d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+	props.date(date_format);
+
 	return (
-		<View key={props.keyval} style={styles.boxWorkouts}>
+		<View key={props.keyval} style={styles.note}>
+			<Text style={styles.dateText}>{date_format}</Text>
 			<TextInput
 				selectionColor="blue"
-				style={styles.input2}
+				style={styles.noteText}
 				placeholder="Enter a Note"
 				placeholderTextColor="#a9a9a9"
 				multiline={false}
 				maxLength={35}
-				onChangeText={props.note}
+				onChangeText={setnote}
 			/>
 		</View>
 	);
 };
 
 const styles = StyleSheet.create({
-	boxWorkouts: {
-		borderColor: "#BFBFBF",
-		borderBottomWidth: 1,
-		borderTopWidth: 1,
-		backgroundColor: "white",
-		marginBottom: 30
+	note: {
+		position: "relative",
+		padding: 20,
+		paddingRight: 100,
+		borderBottomWidth: 2,
+		borderBottomColor: "#ededed"
 	},
-	input2: {
-		backgroundColor: "white",
-		height: 40,
-		fontSize: 18,
-		right: -30
+	dateText: {
+		paddingLeft: 20,
+		borderLeftWidth: 10,
+		borderLeftColor: "purple",
+		color: "purple"
+	},
+	noteText: {
+		paddingLeft: 20,
+		borderLeftWidth: 10,
+		height: 35,
+		borderLeftColor: "purple",
+		fontSize: 16
 	}
 });
 

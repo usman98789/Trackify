@@ -25,17 +25,33 @@ export default function App() {
 function LogScreen() {
 	const [note, setNote] = useState("");
 	const [NoteArray, setNoteArray] = useState([]);
+	const [date, setDate] = useState("");
 
 	const addNote = () => {
-		setNoteArray(NoteArray => [...NoteArray, { Note: note }]);
+		setNoteArray(NoteArray => [
+			...NoteArray,
+			{ id: Math.random().toString(), Note: note, Date: date }
+		]);
 	};
 
 	const setnote = x => {
 		setNote(x);
 	};
 
+	const setdate = d => {
+		setDate(d);
+	};
+
 	let notes = NoteArray.map((val, key) => {
-		return <HoldNote key={key} keyval={key} val={val} note={setnote} />;
+		return (
+			<HoldNote
+				key={key}
+				keyval={key}
+				val={val}
+				note={setnote}
+				date={setdate}
+			/>
+		);
 	});
 
 	return (
