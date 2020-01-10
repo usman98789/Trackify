@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-	View,
-	StyleSheet,
-	TextInput,
-	TouchableOpacity,
-	Text
-} from "react-native";
+import { View, StyleSheet, TextInput, Text } from "react-native";
 
 const HoldNote = props => {
 	const [note, setNote] = useState("");

@@ -1,13 +1,6 @@
 import React, { useState } from "react";
-import {
-	View,
-	TextInput,
-	StyleSheet,
-	Button,
-	TouchableOpacity
-} from "react-native";
+import { View, TextInput, StyleSheet, Button } from "react-native";
 import ExSets from "./ExSets";
-import Icon from "react-native-vector-icons/Ionicons";
 
 const HoldWorkout = props => {
 	const [setsArray, setSetsArray] = useState([]);
