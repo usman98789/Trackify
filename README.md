@@ -26,4 +26,5 @@ This will start the development server for you and then you may use the [Expo](h
 ### Future Features & Plans
 - Use AsyncStorage
 - Get list of excercises from an API
+- See growth charts of users strengths over time
 - Publish to App & Google Play Store
