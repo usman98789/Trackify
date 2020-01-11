@@ -10,8 +10,8 @@ This removes the hastle of writing down what your workout weight and reps are in
 <img src="images/pr_2.png" width='49%'>
 <img src="images/note_1.png" width='49%'>
 <img src="images/note_2.png" width='49%'>
-
 </p>
+
 ## Local Development
 ### Requirements
  - [Node](https://nodejs.org/en/download/current/)
