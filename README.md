@@ -25,10 +25,3 @@ npm install
 npm start
 ```
 This will start the development server for you and then you may use the [Expo](https://expo.io/) client app on your iOS or Android device to open the application.
-
-
-### Future Features & Plans
-- Use AsyncStorage
-- Get list of excercises from an API
-- See growth charts of users strengths over time
-- Publish to App & Google Play Store
